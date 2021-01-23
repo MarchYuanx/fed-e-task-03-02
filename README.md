@@ -6,12 +6,13 @@
 - 初始化Vue.config 对象，设置keep-alive组件，注册 Vue.use()、Vue.mixin()、Vue.extend() 等方法
 2. 初始化实例成员
 - 调用_init()，初始化生命周期，初始化事件，调用 beforeCreate() 
-- 初始化 _props/methods/_data/computed/watch
+- 初始化 _props/methods/_data/computed/watch，对数据进行响应式处理并注入 vue 实例中
 3. 调用 vm.$mount()，把模板编译成 render() 函数
-4. 调用 mountComponent()，触发 beforeMount()，定义updateComponent()，
-5. 创建 Watcher 对象，调用Watcher.get()
+4. 调用 mountComponent()，触发 beforeMount()，定义updateComponent()
+- updateComponent() 中会调用 vm._update(vm._render())，_render() 用于渲染虚拟dom，_update() 用于把虚拟 dom 转换成真实 dom
+5. 创建 Watcher 对象，调用 Watcher.get()，其中会调用 updateComponent()
 
-6. 调用生命周期函数 mounted，挂载结束，最终返回Vue实例。
+6. 调用 mounted()，挂载结束，最终返回Vue实例。
 
 ### 2. 请简述 Vue 响应式原理。
 
