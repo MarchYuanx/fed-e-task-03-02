@@ -2,7 +2,16 @@
 
 
 ### 1. 请简述 Vue 首次渲染的过程。
+1. 初始化静态成员
+- 初始化Vue.config 对象，设置keep-alive组件，注册 Vue.use()、Vue.mixin()、Vue.extend() 等方法
+2. 初始化实例成员
+- 调用_init()，初始化生命周期，初始化事件，调用 beforeCreate() 
+- 初始化 _props/methods/_data/computed/watch
+3. 调用 vm.$mount()，把模板编译成 render() 函数
+4. 调用 mountComponent()，触发 beforeMount()，定义updateComponent()，
+5. 创建 Watcher 对象，调用Watcher.get()
 
+6. 调用生命周期函数 mounted，挂载结束，最终返回Vue实例。
 
 ### 2. 请简述 Vue 响应式原理。
 
